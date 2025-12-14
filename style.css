@@ -180,6 +180,10 @@ footer { border-top: 1px solid #222; padding: 32px 0; text-align: center; color:
     .grid-2 { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 360px) {
+    .hero-title { font-size: 2rem; }
+}
+
 /* Add to bottom of style.css */
 
 .media-wrapper {
