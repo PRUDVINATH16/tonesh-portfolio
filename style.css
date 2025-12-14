@@ -1,0 +1,319 @@
+:root {
+    /* Colors: Dark Room Aesthetic */
+    --bg-color: #050505;
+    --surface-color: #0f0f0f;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --accent-color: #ff2e2e; /* Rec Red */
+    --accent-hover: #d00000;
+    --timeline-line: #333333;
+    
+    /* Spacing: 8pt Grid */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 64px;
+    --space-xl: 96px;
+
+    /* Typography */
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+}
+
+/* Base Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    cursor: crosshair; /* Precision cursor */
+}
+
+/* Cinematic Grain */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+    z-index: 9999;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    padding: 16px 32px;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 46, 46, 0.4);
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: var(--space-md) 0;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.logo .dot { color: var(--accent-color); }
+.nav-cta { padding: 10px 20px; font-size: 0.9rem; }
+
+/* 1. Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: var(--space-lg);
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    margin-bottom: var(--space-md);
+}
+
+.highlight {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-primary);
+}
+
+.hero-subtext {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    font-family: monospace;
+}
+
+.timecode {
+    font-family: monospace;
+    color: var(--accent-color);
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.rec-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Timeline Decoration */
+.timeline-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid var(--timeline-line);
+    background: linear-gradient(to right, transparent 0%, transparent 49%, var(--accent-color) 50%, transparent 51%);
+    background-size: 100% 100%;
+}
+
+.track-lines {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg, var(--timeline-line) 1px, transparent 1px);
+    background-size: 20px 100%;
+    opacity: 0.3;
+}
+
+/* Section Common */
+.section { padding: var(--space-xl) 0; }
+.section-label {
+    font-family: monospace;
+    color: var(--accent-color);
+    margin-bottom: var(--space-xs);
+    display: block;
+    font-size: 0.9rem;
+}
+.section-header h2 { font-size: 3rem; margin-bottom: var(--space-lg); }
+
+/* 2. Work Grid */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+}
+
+.work-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.work-item:hover { transform: translateY(-4px); }
+
+.work-preview {
+    background: var(--surface-color);
+    border: 1px solid #222;
+    margin-bottom: var(--space-sm);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aspect-16-9 { aspect-ratio: 16/9; }
+.aspect-9-16 { aspect-ratio: 9/16; max-width: 300px; }
+.aspect-4-5 { aspect-ratio: 4/5; }
+
+.placeholder-image {
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.work-info h3 { font-size: 1.2rem; margin-bottom: 4px; }
+.work-info p { font-family: monospace; color: var(--text-secondary); font-size: 0.9rem; }
+
+/* 3. Services */
+.services-list {
+    border-top: 1px solid #222;
+}
+
+.service-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid #222;
+    align-items: start;
+    transition: background 0.2s;
+}
+
+.service-row:hover { background: rgba(255,255,255,0.02); }
+
+.service-num { font-family: monospace; color: var(--accent-color); }
+.service-content h3 { font-size: 1.5rem; margin-bottom: var(--space-xs); }
+.service-content p { color: var(--text-secondary); max-width: 400px; }
+.service-icon { font-size: 1.5rem; color: var(--text-secondary); }
+
+/* 4. Logic */
+.logic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+.logic-card {
+    border-left: 2px solid var(--accent-color);
+    padding-left: var(--space-sm);
+}
+
+.logic-card h4 { font-size: 1.2rem; margin-bottom: var(--space-sm); }
+.logic-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+/* 5. Metrics */
+.metrics-wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-lg);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.metric-item { text-align: center; }
+.metric-val { display: block; font-family: var(--font-heading); font-size: 3rem; color: var(--text-primary); line-height: 1; }
+.metric-label { font-family: monospace; color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; }
+.metric-divider { width: 1px; background: #333; }
+
+/* 6. CTA */
+.cta-section { text-align: center; padding-bottom: 150px; }
+.cta-title { font-size: 3rem; margin-bottom: var(--space-sm); }
+.cta-desc { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: var(--space-lg); }
+.cta-note { display: block; margin-top: var(--space-sm); font-family: monospace; color: #444; font-size: 0.8rem; }
+.big-btn { padding: 20px 48px; font-size: 1.2rem; }
+
+/* Footer */
+footer { padding: var(--space-md) 0; border-top: 1px solid #222; font-family: monospace; color: #444; font-size: 0.8rem; }
+.footer-content { display: flex; justify-content: space-between; }
+
+/* Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title { font-size: 3rem; }
+    .logic-grid { grid-template-columns: 1fr; }
+    .metrics-wrapper { flex-direction: column; gap: var(--space-md); }
+    .metric-divider { display: none; }
+    .service-row { grid-template-columns: 1fr; gap: var(--space-sm); }
+    .service-icon { display: none; }
+    .service-num { margin-bottom: 8px; display: block; }
+}
