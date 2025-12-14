@@ -331,7 +331,7 @@ footer { border-top: 1px solid #222; padding: 32px 0; text-align: center; color:
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .hero-title { font-size: 2.5rem; }
+  .hero-title { font-size: 1.9rem; }
   .grid-2 { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; text-align: center; }
   .about-visual { max-width: 280px; }
