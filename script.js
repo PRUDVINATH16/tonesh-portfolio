@@ -63,6 +63,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Optional: Log to console to confirm it loaded
     console.log("Portfolio Script Loaded Successfully");
 });
